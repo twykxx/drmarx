@@ -6,121 +6,55 @@
   <title>FAQ Multilingue</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    mark { background-color: yellow; font-weight: bold; }
-    h1 {
-      font-family: 'Inter', sans-serif;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gray-100 font-sans text-gray-900">
-	<!-- Bandeau supérieur -->
-	<div class="w-screen text-center text-white font-medium text-sm bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 shadow p-2 m-0">
-	  Dr. Caroline MARX
+<body class="bg-gray-100 font-sans text-gray-900 flex flex-col min-h-screen">
+
+  <!-- Header -->
+  <header class="w-screen text-center text-white font-medium text-sm bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 shadow p-2 m-0">
+    Dr. Caroline MARX
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow">
+    <!-- Bloc Titre + Recherche -->
+    <section class="bg-white">
+      <div class="max-w-4xl mx-auto px-6 py-6">
+        <div class="text-center mb-4">
+          <h1 id="faq-title" class="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-500 px-2 whitespace-nowrap text-[clamp(1rem,4vw,1.75rem)] leading-tight">
+            FAQ (Frequently Asked Questions)
+          </h1>
+        </div>
+
+        <div class="flex justify-between items-center mb-0 space-x-4">
+          <input id="search" type="text" placeholder="Rechercher une question..." class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+          <select id="lang" class="p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <option value="fr">FR</option>
+            <option value="de">DE</option>
+            <option value="en">EN</option>
+            <option value="lu">LU</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bloc FAQ Q/R -->
+    <section class="bg-[#f1f5f8]">
+      <div class="max-w-4xl mx-auto px-6 py-6">
+        <div id="faq-list" class="space-y-4"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="font-semibold bg-[#378ffb] text-white text-center py-6 px-4">
+    <div id="footer-text" class="space-y-1">
+	  <div id="footer-line-1"></div>
+	  <div id="footer-line-2"></div>
+	  <div id="footer-phone"></div>
 	</div>
+  </footer>
 
-	<div class="max-w-4xl mx-auto mt-0 px-6 py-6">
-    <!-- Titre principal stylé et moderne -->
-    <header class="text-center mb-4">
-		<h1 id="faq-title" class="text-center font-semibold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-500 px-2 whitespace-nowrap text-[clamp(1rem, 4vw, 1.75rem)] leading-tight">
-		  FAQ (Frequently Asked Questions)
-		</h1>
-    </header>
-
-    <!-- Barre de recherche et sélection de la langue -->
-    <div class="flex justify-between items-center mb-6 space-x-4">
-      <input id="search" type="text" placeholder="Rechercher une question..." class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-      <select id="lang" class="p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-        <option value="fr">FR</option>
-        <option value="de">DE</option>
-        <option value="en">EN</option>
-        <option value="lu">LU</option>
-      </select>
-    </div>
-
-    <!-- Liste des FAQ -->
-    <div id="faq-list" class="space-y-4"></div>
-  </div>
-
-  <script>
-	  const searchInput = document.getElementById('search');
-	  const langSelect = document.getElementById('lang');
-	  const faqList = document.getElementById('faq-list');
-	  const faqTitle = document.getElementById('faq-title');
-
-	  const titles = {
-		fr: "FAQ (Questions fréquemment posées)",
-		de: "FAQ (Häufig gestellte Fragen)",
-		en: "FAQ (Frequently Asked Questions)",
-		lu: "FAQ (Froen)"
-	  };
-
-	  function updateTitle() {
-		const lang = langSelect.value;
-		faqTitle.textContent = titles[lang] || titles['en'];
-	  }
-
-	  function highlight(text, search) {
-		if (!search) return text;
-		const regex = new RegExp(`(${search})`, 'gi');
-		return text.replace(regex, '<mark>$1</mark>');
-	  }
-
-	  function renderFAQs(faqs) {
-		const lang = langSelect.value;
-		const search = searchInput.value.toLowerCase();
-		faqList.innerHTML = '';
-
-		const filtered = faqs.filter(faq => {
-		  const content = [
-			faq.question[lang] || '',
-			faq.answer[lang] || '',
-			...Object.values(faq.question),
-			...Object.values(faq.answer),
-			...(faq.keywords || [])
-		  ].join(' ').toLowerCase();
-		  return content.includes(search);
-		});
-
-		filtered.forEach(faq => {
-		  const details = document.createElement('details');
-		  details.className = "bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow";
-
-		  const summary = document.createElement('summary');
-		  summary.className = "font-semibold cursor-pointer text-indigo-600 hover:text-indigo-800";
-		  summary.innerHTML = highlight(faq.question[lang], search);
-
-		  const p = document.createElement('p');
-		  p.className = "mt-2 text-gray-600";
-		  p.innerHTML = highlight(faq.answer[lang], search);
-
-		  details.appendChild(summary);
-		  details.appendChild(p);
-		  faqList.appendChild(details);
-		});
-	  }
-
-	  let faqs = [];
-
-	  async function loadFAQs() {
-		try {
-		  const response = await fetch('faqs.json');
-		  faqs = await response.json();
-		  renderFAQs(faqs);
-		} catch (error) {
-		  faqList.innerHTML = "<p class='text-red-600'>Erreur de chargement des FAQ.</p>";
-		  console.error('Erreur lors du chargement des FAQs:', error);
-		}
-	  }
-
-	  searchInput.addEventListener('input', () => renderFAQs(faqs));
-	  langSelect.addEventListener('change', () => {
-		updateTitle();
-		renderFAQs(faqs);
-	  });
-
-	  loadFAQs(); // Charge le JSON externe
-	  updateTitle();
-	</script>
+  <script src="script.js"></script>
 </body>
 </html>
