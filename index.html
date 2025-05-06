@@ -55,9 +55,17 @@
 		lu: "FAQ (Froen)"
 	  };
 
+	  const placeholders = {
+		  fr: "Rechercher une question...",
+		  de: "Frage suchen...",
+		  en: "Search a question...",
+		  lu: "Fro sichen..."
+	  };
+
 	  function updateTitle() {
 		const lang = langSelect.value;
 		faqTitle.textContent = titles[lang] || titles['en'];
+		searchInput.placeholder = placeholders[lang] || placeholders['en'];
 	  }
 
 	  function highlight(text, search) {
