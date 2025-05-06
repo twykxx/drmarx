@@ -1,0 +1,146 @@
+[
+  {
+	"id": "faq1",
+	"question": {
+	  "fr": "Comment prendre rendez-vous ?",
+	  "de": "Wie vereinbare ich einen Termin?",
+	  "en": "How do I make an appointment?",
+	  "lu": "Wéi kann ech en Rendez-vous huelen?"
+	},
+	"answer": {
+	  "fr": "Les consultations se font uniquement sur rendez-vous. Vous pouvez réserver en ligne. Pour les urgences, contactez directement le secrétariat au +352 28 89 23 15.",
+	  "de": "Die Konsultationen erfolgen nur nach Terminvereinbarung. Sie können online buchen. Bei Notfällen wenden Sie sich bitte direkt an das Sekretariat unter +352 28 89 23 15.",
+	  "en": "Consultations are by appointment only. You can book online. For emergencies, please contact the office directly at +352 28 89 23 15.",
+	  "lu": "Consultatioune ginn nëmmen op Rendez-vous gemaach. Dir kënnt online reservéieren. Bei Noutfäll rufft w.e.g. d’Sekretariat direkt un: +352 28 89 23 15."
+	},
+	"keywords": ["rendez-vous", "consultation", "prise de rendez-vous", "planning", "appointment", "booking"]
+  },
+  {
+	"id": "faq2",
+	"question": {
+	  "fr": "Que faire en cas d'urgence si aucun créneau n'est disponible ?",
+	  "de": "Was tun bei einem Notfall, wenn kein Termin verfügbar ist?",
+	  "en": "What should I do in an emergency if no appointments are available?",
+	  "lu": "Wat maachen ech bei engem Noutfall wann et keng fräi Rendez-vousen gëtt?"
+	},
+	"answer": {
+	  "fr": "En cas d'urgence et si aucun créneau n'est disponible en ligne, veuillez contacter le secrétariat au +352 28 89 23 15.",
+	  "de": "Im Notfall und wenn kein Online-Termin verfügbar ist, kontaktieren Sie bitte das Sekretariat unter +352 28 89 23 15.",
+	  "en": "In case of emergency and no online slots are available, please contact the office directly at +352 28 89 23 15.",
+	  "lu": "Bei engem Noutfall an et ass kee Slot online verfügbar, rufft w.e.g. direkt d’Sekretariat un: +352 28 89 23 15."
+	},
+	"keywords": ["urgence", "secrétariat", "contact", "emergency", "no appointment"]
+  },
+  {
+	"id": "faq3",
+	"question": {
+	  "fr": "Dois-je venir en avance à mon rendez-vous ?",
+	  "de": "Soll ich früher zu meinem Termin kommen?",
+	  "en": "Should I arrive early for my appointment?",
+	  "lu": "Soll ech fréi op mäi Rendez-vous kommen?"
+	},
+	"answer": {
+	  "fr": "Oui, nous vous remercions d’arriver en avance à votre rendez-vous, muni(e) de votre carte CNS.",
+	  "de": "Ja, bitte erscheinen Sie frühzeitig zu Ihrem Termin und bringen Sie Ihre CNS-Karte mit.",
+	  "en": "Yes, please arrive early for your appointment and bring your CNS card.",
+	  "lu": "Jo, kommt w.e.g. fréi op äre Rendez-vous a bréngt är CNS-Kaart mat."
+	},
+	"keywords": ["ponctualité", "retard", "préparation", "CNS", "rendez-vous", "carte"]
+  },
+  {
+	"id": "faq4",
+	"question": {
+	  "fr": "Que se passe-t-il si j'annule mon rendez-vous trop tard ?",
+	  "de": "Was passiert, wenn ich meinen Termin zu spät absage?",
+	  "en": "What happens if I cancel my appointment too late?",
+	  "lu": "Wat geschitt wann ech mäi Rendez-vous ze spéit ofsoen?"
+	},
+	"answer": {
+	  "fr": "Tout rendez-vous non honoré ou annulé moins de 24h à l’avance pourra être facturé sans remboursement CNS.",
+	  "de": "Nicht eingehaltene oder weniger als 24 Stunden vorher abgesagte Termine können ohne CNS-Erstattung berechnet werden.",
+	  "en": "Missed appointments or cancellations made less than 24 hours in advance may be charged without CNS reimbursement.",
+	  "lu": "Rendez-vousen déi net agehalen oder manner wéi 24 Stonnen am Viraus annuléiert ginn, kënne verrechent ginn ouni CNS-Remboursement."
+	},
+	"keywords": ["annulation", "retard", "facturation", "CNS", "no-show", "remboursement"]
+  },
+  {
+	"id": "faq5",
+	"question": {
+	  "fr": "Qu'est-ce que le supplément CP1 ?",
+	  "de": "Was ist der Zuschlag CP1?",
+	  "en": "What is the CP1 supplement?",
+	  "lu": "Wat ass de CP1-Zouschlag?"
+	},
+	"answer": {
+	  "fr": "Un supplément (CP1) peut être appliqué dans certaines situations particulières.",
+	  "de": "Ein Zuschlag (CP1) kann in bestimmten Situationen erhoben werden.",
+	  "en": "A CP1 supplement may be applied in specific situations.",
+	  "lu": "E CP1-Zouschlag ka jee no Situatioun verrechent ginn."
+	},
+	"keywords": ["CP1", "supplément", "tarif", "facturation", "honoraires"]
+  },
+  {
+	"id": "faq6",
+	"question": {
+	  "fr": "Un médecin en formation peut-il assurer ma consultation ?",
+	  "de": "Kann ein Arzt in Ausbildung meine Konsultation durchführen?",
+	  "en": "Can a trainee doctor handle my consultation?",
+	  "lu": "Kann en Dokter an der Formatioun meng Consultatioun maachen?"
+	},
+	"answer": {
+	  "fr": "Oui, un(e) médecin en formation peut vous recevoir. Si vous souhaitez être vu(e) uniquement par le Dr Marx, merci de le préciser lors de la prise de rendez-vous.",
+	  "de": "Ja, ein/e Arzt/Ärztin in Ausbildung kann Sie empfangen. Wenn Sie ausschließlich von Dr. Marx gesehen werden möchten, geben Sie dies bitte bei der Terminvereinbarung an.",
+	  "en": "Yes, a trainee doctor may see you. If you prefer to be seen only by Dr. Marx, please mention it when booking your appointment.",
+	  "lu": "Jo, en Dokter an der Formatioun kann Iech empfänken. Wann Dir nëmme vum Dr Marx wëllt gesi ginn, sot et w.e.g. beim Rendez-vous."
+	},
+	"keywords": ["formation", "stagiaire", "médecin", "consultation", "Dr Marx", "préférence"]
+  },
+  {
+	"id": "faq7",
+	"question": {
+	  "fr": "Comment faire si je souhaite être vu uniquement par le Dr Marx ?",
+	  "de": "Was tun, wenn ich nur von Dr. Marx gesehen werden möchte?",
+	  "en": "What if I want to be seen only by Dr. Marx?",
+	  "lu": "Wat maachen ech wann ech nëmme vum Dr Marx wëll gesi ginn?"
+	},
+	"answer": {
+	  "fr": "Merci de le préciser lors de la prise de rendez-vous.",
+	  "de": "Bitte geben Sie dies bei der Terminvereinbarung an.",
+	  "en": "Please specify this when booking your appointment.",
+	  "lu": "Sot dat w.e.g. bei der Rendez-vous-Buchung."
+	},
+	"keywords": ["préférence", "Dr Marx", "rendez-vous", "consultation"]
+  },
+  {
+	"id": "faq8",
+	"question": {
+	  "fr": "Qui assure les consultations du vendredi ?",
+	  "de": "Wer übernimmt die Sprechstunden am Freitag?",
+	  "en": "Who handles consultations on Fridays?",
+	  "lu": "Wien mécht d’Consultatiounen Freides?"
+	},
+	"answer": {
+	  "fr": "Le Dr Bastin assure les consultations d'urgence les vendredis.",
+	  "de": "Dr. Bastin übernimmt die Notfallkonsultationen freitags.",
+	  "en": "Dr. Bastin handles urgent consultations on Fridays.",
+	  "lu": "Den Dr Bastin mécht d’Noutconsultatiounen Freides."
+	},
+	"keywords": ["vendredi", "consultation", "Dr Bastin", "urgence"]
+  },
+  {
+	"id": "faq9",
+	"question": {
+	  "fr": "Comment contacter le cabinet pour plus d'informations ?",
+	  "de": "Wie kontaktiere ich die Praxis für weitere Informationen?",
+	  "en": "How can I contact the clinic for more information?",
+	  "lu": "Wéi kann ech d’Praxis kontaktéieren fir weider Informatiounen?"
+	},
+	"answer": {
+	  "fr": "Pour toute question ou information complémentaire, veuillez contacter notre secrétariat.",
+	  "de": "Für weitere Fragen oder Informationen wenden Sie sich bitte an unser Sekretariat.",
+	  "en": "For any questions or further information, please contact our office.",
+	  "lu": "Fir Froen oder weider Informatiounen, kontaktéiert w.e.g. d’Sekretariat."
+	},
+	"keywords": ["contact", "informations", "secrétariat", "aide", "questions"]
+  }
+]
