@@ -1,5 +1,6 @@
 const searchInput = document.getElementById('search');
 const langSelect = document.getElementById('lang');
+const clearSearchBtn = document.getElementById('clear-search');
 const faqList = document.getElementById('faq-list');
 const faqTitle = document.getElementById('faq-title');
 const footerText = document.getElementById('footer-text');
@@ -43,9 +44,24 @@ function updateTitle() {
 
 function highlight(text, search) {
 	if (!search) return text;
-	const regex = new RegExp(`(${search})`, 'gi');
-	return text.replace(regex, '<mark>$1</mark>');
+	
+	// Temp : protèger les balises HTML
+	const tags = [];
+	const protectedText = text.replace(/<[^>]*>/g, match => {
+		tags.push(match);
+		return `__TAG__${tags.length - 1}__`;
+	});
+
+	// Appliquer le highlight sur le texte brut
+	const highlighted = protectedText.replace(
+		new RegExp(`(${search})`, 'gi'),
+		'<mark>$1</mark>'
+	);
+
+	// Réinsérer les balises
+	return highlighted.replace(/__TAG__(\d+)__/g, (_, i) => tags[i]);
 }
+
 
 function updateFooter() {
 	const lang = langSelect.value;
@@ -58,6 +74,7 @@ function updateFooter() {
 function renderFAQs(faqs) {
 	const lang = langSelect.value;
 	const search = searchInput.value.toLowerCase();
+	const shouldOpen = search.length > 0;
 	faqList.innerHTML = '';
 
 	const filtered = faqs.filter(faq => {
@@ -74,17 +91,27 @@ function renderFAQs(faqs) {
 	filtered.forEach(faq => {
 		const details = document.createElement('details');
 		details.className = "bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow";
+		details.open = shouldOpen;
 
 		const summary = document.createElement('summary');
 		summary.className = "font-semibold cursor-pointer text-indigo-600 hover:text-indigo-800";
 		summary.innerHTML = highlight(faq.question[lang], search);
 
-		const p = document.createElement('p');
-		p.className = "mt-2 text-gray-600";
-		p.innerHTML = highlight(faq.answer[lang], search);
+		let answerRaw = faq.answer[lang].replace('{{PHONE}}', phoneButton);
+
+		const contentDiv = document.createElement('div');
+		contentDiv.className = "mt-2 text-gray-600 space-y-3";
+
+		// Séparer les paragraphes par double saut de ligne
+		let answerParagraphs = answerRaw
+		  .split(/\n\s*\n/)
+		  .map(paragraph => `<p>${highlight(paragraph.trim(), search)}</p>`)
+		  .join('');
+
+		contentDiv.innerHTML = answerParagraphs;
 
 		details.appendChild(summary);
-		details.appendChild(p);
+		details.appendChild(contentDiv);
 		faqList.appendChild(details);
 	});
 }
@@ -102,13 +129,23 @@ const response = await fetch('faqs.json');
 	}
 }
 
-searchInput.addEventListener('input', () => renderFAQs(faqs));
+searchInput.addEventListener('input', () => {
+  renderFAQs(faqs);
+  clearSearchBtn.classList.toggle('hidden', searchInput.value === '');
+});
+
+clearSearchBtn.addEventListener('click', () => {
+  searchInput.value = '';
+  clearSearchBtn.classList.add('hidden');
+  renderFAQs(faqs);
+});
+
 langSelect.addEventListener('change', () => {
 	updateTitle();
 	renderFAQs(faqs);
 	updateFooter();
 });
 
-loadFAQs(); // Charge le JSON externe
+loadFAQs();
 updateTitle();
 updateFooter();
