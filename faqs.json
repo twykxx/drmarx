@@ -14,7 +14,7 @@
 	  "lu": "Kontaktéiert d'Sekretariat um <mark>+352 28 89 23 15</mark>."
 	},
 	"keywords": ["contact", "secrétariat", "question"],
-	"specialStyle": true
+	"special": true
   },
   {
 	  "id": "faq1",
