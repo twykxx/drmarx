@@ -93,7 +93,9 @@ function renderFAQs(faqs) {
 		return content.includes(search);
 	});
 
-	filtered.forEach(faq => {
+	filtered
+		.sort((a, b) => (a.special ? 1 : 0) - (b.special ? 1 : 0))  // place les .special en dernier
+		.forEach(faq => {
 		const details = document.createElement('details');
 		details.className = `p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow ${  faq.special ? 'special-faq' : 'bg-white'}`;
 
