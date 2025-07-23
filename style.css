@@ -7,21 +7,27 @@ h1 {
   font-family: 'Inter', sans-serif;
 }
 
+/* Style pour la carte FAQ spéciale (ex: contact) */
+.special-faq {
+  background-color: #378ffb;
+  color: white;
+}
+
+.special-faq mark {
+  background-color: white;
+  color: #1e40af; /* Bleu foncé lisible */
+}
+
 #footer-text div {
-  text-align: center;
-  font-size: 1rem;
-  line-height: 1.4;
+  /* Obsolète, supprimé */
 }
 
 @media (max-width: 640px) {
   #footer-text div {
-    font-size: 0.875rem;
+    /* Obsolète, supprimé */
   }
 }
 
 #footer-message {
-  white-space: nowrap;
-  text-align: center;
-  font-size: clamp(0.75rem, 2.5vw, 1rem);
-  margin-bottom: 0.5rem;
+  /* Obsolète, supprimé */
 }
