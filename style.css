@@ -7,9 +7,8 @@ h1 {
   font-family: 'Inter', sans-serif;
 }
 
-/* Style pour la carte FAQ spéciale (ex: contact) */
-.special-faq {
+.special-faq,
+.special-faq summary {
   background-color: #378ffb;
   color: white;
-  outline: 2px solid red;
 }
