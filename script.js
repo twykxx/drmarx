@@ -95,7 +95,8 @@ function renderFAQs(faqs) {
 
 	filtered.forEach(faq => {
 		const details = document.createElement('details');
-		details.className = "bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow";
+		details.className = `p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow ${  faq.special ? 'special-faq' : 'bg-white'}`;
+
 		details.open = shouldOpen;
 
 		const summary = document.createElement('summary');
