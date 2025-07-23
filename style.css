@@ -7,8 +7,36 @@ h1 {
   font-family: 'Inter', sans-serif;
 }
 
-.special-faq,
+/* Style pour la carte FAQ spéciale (ex: contact) */
+.special-faq {
+  background-color: #378ffb;
+  color: white;
+  border-radius: 0.5rem; /* arrondir comme tes autres cards */
+  box-shadow: 0 4px 6px rgba(55, 143, 251, 0.3);
+}
+
+/* Forcer le fond et la couleur aussi sur le summary */
 .special-faq summary {
   background-color: #378ffb;
   color: white;
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none; /* supprimer la flèche par défaut, si besoin */
+}
+
+/* Pour que la flèche reste visible en blanc */
+.special-faq summary::-webkit-details-marker {
+  color: white;
+}
+
+/* Style du contenu */
+.special-faq > div {
+  color: white;
+  background-color: transparent; /* éviter un fond blanc ici */
+}
+
+/* Ajout optionnel pour améliorer le focus */
+.special-faq summary:focus {
+  outline: 2px solid #a3c9ff;
+  outline-offset: 2px;
 }
