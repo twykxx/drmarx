@@ -108,7 +108,7 @@ function renderFAQs(faqs) {
 		let answerRaw = applyVariables(faq.answer[lang]);
 
 		const contentDiv = document.createElement('div');
-		contentDiv.className = "mt-2 text-gray-600 space-y-3";
+		contentDiv.className = `mt-2 space-y-3 ${faq.special ? 'text-white' : 'text-gray-600'}`;
 
 		let answerParagraphs = answerRaw
 			.split(/\n\s*\n/)
