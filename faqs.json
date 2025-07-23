@@ -9,7 +9,7 @@
 	},
 	"answer": {
 	  "fr": "Les consultations se font uniquement sur rendez-vous.\n\nVous pouvez réserver en ligne sur <a href=\"https://www.doctena.lu/fr/specialite/medecin-generaliste/caroline-marx-178426\" class=\"text-blue-600 hover:underline font-semibold\" target=\"_blank\">Doctena</a>.\n\nPour les urgences, contactez directement le secrétariat : \n\n{{PHONE}}",
-	  "de": "Die Konsultationen erfolgen nur nach Terminvereinbarung. Sie können online buchen. Bei Notfällen wenden Sie sich bitte direkt an das Sekretariat unter +352 28 89 23 15.",
+	  "de": "Die Konsultationen erfolgen nur nach Terminvereinbarung. Sie können online buchen. Bei Notfällen wenden Sie sich bitte direkt an das Sekretariat unter \n\n{{PHONE}}",
 	  "en": "Consultations are by appointment only. You can book online. For emergencies, please contact the office directly at +352 28 89 23 15.",
 	  "lu": "Consultatioune ginn nëmmen op Rendez-vous gemaach. Dir kënnt online reservéieren. Bei Noutfäll rufft w.e.g. d’Sekretariat direkt un: +352 28 89 23 15."
 	},
