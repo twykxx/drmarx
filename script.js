@@ -94,33 +94,39 @@ function renderFAQs(faqs) {
 	});
 
 	filtered
-		.sort((a, b) => (a.special ? 1 : 0) - (b.special ? 1 : 0))  // place les .special en dernier
+		// place les .special en dernier
+		.sort((a, b) => (a.special ? 1 : 0) - (b.special ? 1 : 0))
 		.forEach(faq => {
-		const details = document.createElement('details');
-		details.className = `p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow ${  faq.special ? 'special-faq' : 'bg-white'}`;
+			const details = document.createElement('details');
+			details.className = `p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow`;
+			if (faq.special) {
+				details.classList.add('special-faq');  // ajoute le style spécial
+			} else {
+				details.classList.add('bg-white');
+			}
 
-		details.open = shouldOpen;
+			details.open = shouldOpen;
 
-		const summary = document.createElement('summary');
-		summary.className = "font-semibold cursor-pointer text-indigo-600 hover:text-indigo-800";
-		summary.innerHTML = highlight(faq.question[lang], search);
+			const summary = document.createElement('summary');
+			summary.className = "font-semibold cursor-pointer " + (faq.special ? 'text-white' : 'text-indigo-600 hover:text-indigo-800');
+			summary.innerHTML = highlight(faq.question[lang], search);
 
-		let answerRaw = applyVariables(faq.answer[lang]);
+			let answerRaw = applyVariables(faq.answer[lang]);
 
-		const contentDiv = document.createElement('div');
-		contentDiv.className = `mt-2 space-y-3 ${faq.special ? 'text-white' : 'text-gray-600'}`;
+			const contentDiv = document.createElement('div');
+			contentDiv.className = `mt-2 space-y-3 ${faq.special ? 'text-white' : 'text-gray-600'}`;
 
-		let answerParagraphs = answerRaw
-			.split(/\n\s*\n/)
-			.map(paragraph => `<p>${highlight(paragraph.trim(), search)}</p>`)
-			.join('');
+			let answerParagraphs = answerRaw
+				.split(/\n\s*\n/)
+				.map(paragraph => `<p>${highlight(paragraph.trim(), search)}</p>`)
+				.join('');
 
-		contentDiv.innerHTML = answerParagraphs;
+			contentDiv.innerHTML = answerParagraphs;
 
-		details.appendChild(summary);
-		details.appendChild(contentDiv);
-		faqList.appendChild(details);
-	});
+			details.appendChild(summary);
+			details.appendChild(contentDiv);
+			faqList.appendChild(details);
+		});
 }
 
 let faqs = [];
