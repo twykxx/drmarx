@@ -11,4 +11,5 @@ h1 {
 .special-faq {
   background-color: #378ffb;
   color: white;
+  outline: 2px solid red;
 }
