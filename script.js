@@ -35,6 +35,15 @@ const phoneButton = `
   </a>
 `;
 
+const templateVars = {
+	'{{PHONE}}': phoneButton
+};
+
+function applyVariables(text) {
+	return Object.entries(templateVars).reduce((acc, [key, val]) => {
+		return acc.replaceAll(key, val);
+	}, text);
+}
 
 function updateTitle() {
 	const lang = langSelect.value;
@@ -45,23 +54,19 @@ function updateTitle() {
 function highlight(text, search) {
 	if (!search) return text;
 	
-	// Temp : protèger les balises HTML
 	const tags = [];
 	const protectedText = text.replace(/<[^>]*>/g, match => {
 		tags.push(match);
 		return `__TAG__${tags.length - 1}__`;
 	});
 
-	// Appliquer le highlight sur le texte brut
 	const highlighted = protectedText.replace(
 		new RegExp(`(${search})`, 'gi'),
 		'<mark>$1</mark>'
 	);
 
-	// Réinsérer les balises
 	return highlighted.replace(/__TAG__(\d+)__/g, (_, i) => tags[i]);
 }
-
 
 function updateFooter() {
 	const lang = langSelect.value;
@@ -79,11 +84,11 @@ function renderFAQs(faqs) {
 
 	const filtered = faqs.filter(faq => {
 		const content = [
-		faq.question[lang] || '',
-		faq.answer[lang] || '',
-		...Object.values(faq.question),
-		...Object.values(faq.answer),
-		...(faq.keywords || [])
+			faq.question[lang] || '',
+			faq.answer[lang] || '',
+			...Object.values(faq.question),
+			...Object.values(faq.answer),
+			...(faq.keywords || [])
 		].join(' ').toLowerCase();
 		return content.includes(search);
 	});
@@ -97,16 +102,15 @@ function renderFAQs(faqs) {
 		summary.className = "font-semibold cursor-pointer text-indigo-600 hover:text-indigo-800";
 		summary.innerHTML = highlight(faq.question[lang], search);
 
-		let answerRaw = faq.answer[lang].replace('{{PHONE}}', phoneButton);
+		let answerRaw = applyVariables(faq.answer[lang]);
 
 		const contentDiv = document.createElement('div');
 		contentDiv.className = "mt-2 text-gray-600 space-y-3";
 
-		// Séparer les paragraphes par double saut de ligne
 		let answerParagraphs = answerRaw
-		  .split(/\n\s*\n/)
-		  .map(paragraph => `<p>${highlight(paragraph.trim(), search)}</p>`)
-		  .join('');
+			.split(/\n\s*\n/)
+			.map(paragraph => `<p>${highlight(paragraph.trim(), search)}</p>`)
+			.join('');
 
 		contentDiv.innerHTML = answerParagraphs;
 
@@ -119,10 +123,10 @@ function renderFAQs(faqs) {
 let faqs = [];
 
 async function loadFAQs() {
-try {
-const response = await fetch('faqs.json');
-	faqs = await response.json();
-	renderFAQs(faqs);
+	try {
+		const response = await fetch('faqs.json');
+		faqs = await response.json();
+		renderFAQs(faqs);
 	} catch (error) {
 		faqList.innerHTML = "<p class='text-red-600'>Erreur de chargement des FAQ.</p>";
 		console.error('Erreur lors du chargement des FAQs:', error);
@@ -130,14 +134,14 @@ const response = await fetch('faqs.json');
 }
 
 searchInput.addEventListener('input', () => {
-  renderFAQs(faqs);
-  clearSearchBtn.classList.toggle('hidden', searchInput.value === '');
+	renderFAQs(faqs);
+	clearSearchBtn.classList.toggle('hidden', searchInput.value === '');
 });
 
 clearSearchBtn.addEventListener('click', () => {
-  searchInput.value = '';
-  clearSearchBtn.classList.add('hidden');
-  renderFAQs(faqs);
+	searchInput.value = '';
+	clearSearchBtn.classList.add('hidden');
+	renderFAQs(faqs);
 });
 
 langSelect.addEventListener('change', () => {
