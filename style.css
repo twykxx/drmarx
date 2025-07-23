@@ -17,17 +17,3 @@ h1 {
   background-color: white;
   color: #1e40af; /* Bleu foncé lisible */
 }
-
-#footer-text div {
-  /* Obsolète, supprimé */
-}
-
-@media (max-width: 640px) {
-  #footer-text div {
-    /* Obsolète, supprimé */
-  }
-}
-
-#footer-message {
-  /* Obsolète, supprimé */
-}
