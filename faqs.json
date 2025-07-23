@@ -8,10 +8,10 @@
 	  "lu": "Nach eng Fro?"
 	},
 	"answer": {
-	  "fr": "Contactez le secrétariat au {{PHONE}}",
-	  "de": "Kontaktieren Sie das Sekretariat unter {{PHONE}}",
-	  "en": "Contact the office at {{PHONE}}",
-	  "lu": "Kontaktéiert d'Sekretariat um {{PHONE}}"
+	  "fr": "Contactez notre secrétariat au : {{PHONE}}",
+	  "de": "Kontaktieren Sie das Sekretariat unter : {{PHONE}}",
+	  "en": "Contact the office at : {{PHONE}}",
+	  "lu": "Kontaktéiert d'Sekretariat um : {{PHONE}}"
 	},
 	"keywords": ["contact", "secrétariat", "question"],
 	"special": true
