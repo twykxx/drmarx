@@ -1,6 +1,23 @@
 [
   {
-	"id": "faq1",
+	  "id": "contact",
+	"question": {
+	  "fr": "Une autre question ?",
+	  "de": "Noch eine Frage?",
+	  "en": "Another question?",
+	  "lu": "Nach eng Fro?"
+	},
+	"answer": {
+	  "fr": "Contactez le secrétariat au <mark>+352 28 89 23 15</mark>.",
+	  "de": "Kontaktieren Sie das Sekretariat unter <mark>+352 28 89 23 15</mark>.",
+	  "en": "Contact the office at <mark>+352 28 89 23 15</mark>.",
+	  "lu": "Kontaktéiert d'Sekretariat um <mark>+352 28 89 23 15</mark>."
+	},
+	"keywords": ["contact", "secrétariat", "question"],
+	"specialStyle": true
+  },
+  {
+	  "id": "faq1",
 	"question": {
 	  "fr": "Comment prendre rendez-vous ?",
 	  "de": "Wie vereinbare ich einen Termin?",
