@@ -8,10 +8,10 @@
 	  "lu": "Nach eng Fro?"
 	},
 	"answer": {
-	  "fr": "Contactez le secrétariat au <mark>+352 28 89 23 15</mark>.",
-	  "de": "Kontaktieren Sie das Sekretariat unter <mark>+352 28 89 23 15</mark>.",
-	  "en": "Contact the office at <mark>+352 28 89 23 15</mark>.",
-	  "lu": "Kontaktéiert d'Sekretariat um <mark>+352 28 89 23 15</mark>."
+	  "fr": "Contactez le secrétariat au {{PHONE}}.",
+	  "de": "Kontaktieren Sie das Sekretariat unter {{PHONE}}.",
+	  "en": "Contact the office at {{PHONE}}.",
+	  "lu": "Kontaktéiert d'Sekretariat um {{PHONE}}."
 	},
 	"keywords": ["contact", "secrétariat", "question"],
 	"special": true
