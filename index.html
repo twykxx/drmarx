@@ -1,58 +1,97 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FAQ Multilingue</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bg-gray-100 font-sans text-gray-900 flex flex-col min-h-screen">
 
-  <!-- Header -->
-  <header class="w-screen text-center text-white font-medium text-sm bg-gradient-to-r from-[#4698fb] via-[#378ffb] to-purple-600 shadow p-2 m-0">
+<body class="bg-[#eaeef2] font-sans text-gray-900 h-screen overflow-hidden flex flex-col">
+
+  <!-- Header fixe -->
+  <header
+    class="fixed top-0 left-0 w-full text-center text-white font-medium text-sm bg-gradient-to-r from-[#4698fb] via-[#378ffb] to-purple-600 shadow p-2 z-30">
     Dr. Caroline MARX
   </header>
 
-  <!-- Main Content -->
-  <main class="flex-grow bg-[#eaeef2]">
-    <!-- Bloc Titre + Recherche -->
-    <section class="bg-white">
-      <div class="max-w-4xl mx-auto px-6 py-6">
-        <div class="text-center mb-4">
-          <h1 id="faq-title" class="font-semibold text-transparent bg-clip-text bg-[#378ffb] px-2 whitespace-nowrap text-[clamp(1rem,4vw,1.75rem)] leading-tight">
-            FAQ (Frequently Asked Questions)
-          </h1>
+
+
+  <!-- Section titre + recherche fixe juste sous header -->
+  <section
+    class="fixed top-[2.25rem] left-0 w-full bg-white z-30 border-b border-gray-200">
+    <div class="max-w-4xl mx-auto px-6 py-6">
+      <div class="text-center mb-4">
+        <h1 id="faq-title"
+          class="font-semibold text-transparent bg-clip-text bg-[#378ffb] px-2 whitespace-nowrap text-[clamp(1rem,4vw,1.75rem)] leading-tight">
+          FAQ (Frequently Asked Questions)
+        </h1>
+      </div>
+      <div class="flex justify-between items-center space-x-4">
+        <div class="relative w-full">
+          <input id="search" type="text" placeholder="Rechercher une question..."
+            class="w-full p-3 pr-10 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+          <button id="clear-search" type="button" aria-label="Effacer la recherche"
+            class="absolute inset-y-0 right-3 my-auto text-xl text-gray-400 hover:text-gray-600 focus:outline-none hidden">
+            &times;
+          </button>
         </div>
-
-        <div class="flex justify-between items-center mb-0 space-x-4">
-		  <div class="relative w-full">
-			<input id="search" type="text" placeholder="Rechercher une question..." 
-			  class="w-full p-3 pr-10 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-			<button id="clear-search" type="button"
-			  class="absolute inset-y-0 right-3 my-auto text-xl text-gray-400 hover:text-gray-600 focus:outline-none hidden">
-			  &times;
-			</button>
-		  </div>
-		  <select id="lang" class="p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-			<option value="fr">FR</option>
-			<option value="de">DE</option>
-			<option value="en">EN</option>
-			<option value="lu">LU</option>
-		  </select>
-		</div>
-
+        <select id="lang"
+          class="p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <option value="fr">FR</option>
+          <option value="de">DE</option>
+          <option value="en">EN</option>
+          <option value="lu">LU</option>
+        </select>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Bloc FAQ Q/R -->
+
+
+  <!-- Main scrollable, avec marge en haut et en bas pour ne pas être sous header/section+footer -->
+  <main
+    class="flex-grow overflow-y-auto max-w-4xl mx-auto w-full px-6 pt-[10rem] pb-36">
     <section>
-      <div class="max-w-4xl mx-auto px-6 pt-6 pb-0">
-        <div id="faq-list" class="space-y-4 mb-6"></div>
-      </div>
+      <div id="faq-list" class="space-y-4 mb-6"></div>
     </section>
   </main>
+  
+  
+  
+	<!-- Flèche haut pour scroll FAQ -->
+	<div id="scroll-up" role="button" aria-label="Faire défiler vers le haut" tabindex="0" class="fixed top-[calc(8rem+2px)] left-1/2 transform -translate-x-1/2 z-40 p-2 cursor-pointer bg-white bg-opacity-80 rounded-b-md shadow hover:bg-opacity-100 hidden">
+	  <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+		<path stroke-linecap="round" stroke-linejoin="round" d="M19 15l-7-7-7 7" />
+	  </svg>
+	</div>
+
+   <!-- Flèche bas pour scroll FAQ -->
+   <div id="scroll-down" role="button" aria-label="Faire défiler vers le bas" tabindex="0" class="fixed bottom-[calc(4.5rem+36px)] left-1/2 transform -translate-x-1/2 z-40 p-2 cursor-pointer bg-white bg-opacity-80 rounded-t-md shadow hover:bg-opacity-100 hidden">
+	  <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+		<path stroke-linecap="round" stroke-linejoin="round" d="M5 9l7 7 7-7" />
+	  </svg>
+   </div>
+
+
+
+  <!-- Footer -->
+  <footer class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-300 z-40">
+	  <div class="max-w-4xl mx-auto w-full px-6">
+		<div id="pagination-dots" class="flex justify-center space-x-2"></div>
+
+		<div id="scroll-container" class="flex overflow-x-auto gap-4 scroll-smooth py-2">
+			<div class="scroll-item flex-shrink-0 w-48 h-24 bg-indigo-500 rounded-lg shadow-md"></div>
+			<div class="scroll-item flex-shrink-0 w-48 h-24 bg-indigo-500 rounded-lg shadow-md"></div>
+			<div class="scroll-item flex-shrink-0 w-48 h-24 bg-pink-500 rounded-lg shadow-md"></div>
+			<div class="scroll-item flex-shrink-0 w-48 h-24 bg-green-500 rounded-lg shadow-md"></div>
+			<div class="scroll-item flex-shrink-0 w-48 h-24 bg-yellow-400 rounded-lg shadow-md"></div>
+			<div class="scroll-item flex-shrink-0 w-48 h-24 bg-red-500 rounded-lg shadow-md"></div>
+		</div>
+	  </div>
+   </footer>
 
   <script src="script.js"></script>
 </body>
