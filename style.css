@@ -7,36 +7,162 @@ h1 {
   font-family: 'Inter', sans-serif;
 }
 
-/* Style pour la carte FAQ spéciale (ex: contact) */
+/* Carte FAQ spéciale (ex: contact) */
 .special-faq {
   background-color: #378ffb;
   color: white;
-  border-radius: 0.5rem; /* arrondir comme tes autres cards */
+  border-radius: 0.5rem;
   box-shadow: 0 4px 6px rgba(55, 143, 251, 0.3);
 }
 
-/* Forcer le fond et la couleur aussi sur le summary */
 .special-faq summary {
   background-color: #378ffb;
   color: white;
   cursor: pointer;
   font-weight: 600;
-  list-style: none; /* supprimer la flèche par défaut, si besoin */
 }
 
-/* Pour que la flèche reste visible en blanc */
 .special-faq summary::-webkit-details-marker {
   color: white;
 }
 
-/* Style du contenu */
 .special-faq > div {
   color: white;
-  background-color: transparent; /* éviter un fond blanc ici */
+  background-color: transparent;
 }
 
-/* Ajout optionnel pour améliorer le focus */
 .special-faq summary:focus {
   outline: 2px solid #a3c9ff;
   outline-offset: 2px;
+}
+
+/* Scrollbar fine */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: white white;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: white;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 10px;
+}
+
+/* Flèches scroll haut */
+#scroll-up {
+  top: calc(11rem + 2px);
+  transition: opacity 0.2s ease;
+}
+
+/* Flèches scroll bas */
+#scroll-down {
+  bottom: calc(10rem + 38px);
+  transition: opacity 0.2s ease;
+}
+
+/* Ajuster main padding top si nécessaire */
+main {
+  padding-top: calc(4rem + 4rem);
+}
+
+/* Ajuster scroll-margin-top pour les <details> */
+#faq-list details {
+  scroll-margin-top: calc(4rem + 4rem);
+}
+
+#faq-list {
+  padding-top: calc(2rem + 4px);
+  padding-bottom: calc(2rem + 2px);
+}
+
+/* Footer */
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  height: auto;
+  gap: 0.75rem;
+  border-top: 1px solid #d1d5db;
+  
+  /* cacher la scrollbar tout en laissant le scroll actif si besoin */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+footer::-webkit-scrollbar {
+  display: none;
+}
+
+/* Pagination */
+#pagination-dots {
+  margin: 0;
+  padding: 0;
+  height: auto;
+  gap: 8px;
+}
+
+#pagination-dots .dot {
+  width: 12px;
+  height: 12px;
+}
+
+#pagination-dots .dot.active {
+  width: 14px;
+  height: 14px;
+}
+
+/* Scroll container horizontal */
+#scroll-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 #e2e8f0;
+}
+
+/* Facultatif pour rendre le scroll plus évident */
+#scroll-container::after {
+  content: "";
+  flex-shrink: 0;
+  width: 1rem;
+}
+
+.scroll-item {
+  flex-shrink: 0;
+  min-width: 10rem;
+  height: 6rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+#scroll-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+#scroll-container::-webkit-scrollbar-track {
+  background: #e2e8f0;
+}
+
+#scroll-container::-webkit-scrollbar-thumb {
+  background-color: #94a3b8;
+  border-radius: 10px;
+}
+
+/* ✅ Cacher scrollbar des FAQs */
+.faqs {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.faqs::-webkit-scrollbar {
+  display: none;
 }
