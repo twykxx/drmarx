@@ -43,17 +43,22 @@ function updateTitle() {
 	searchInput.placeholder = placeholders[lang] || placeholders['en'];
 }
 
+function escapeRegex(string) {
+	return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
 function highlight(text, search) {
 	if (!search) return text;
-	
+
 	const tags = [];
 	const protectedText = text.replace(/<[^>]*>/g, match => {
 		tags.push(match);
 		return `__TAG__${tags.length - 1}__`;
 	});
 
+	const safeSearch = escapeRegex(search);
 	const highlighted = protectedText.replace(
-		new RegExp(`(${search})`, 'gi'),
+		new RegExp(`(${safeSearch})`, 'gi'),
 		'<mark>$1</mark>'
 	);
 
@@ -84,7 +89,7 @@ function renderFAQs(faqs) {
 			const details = document.createElement('details');
 			details.className = `p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow`;
 			if (faq.special) {
-				details.classList.add('special-faq');  // ajoute le style spécial
+				details.classList.add('special-faq');
 			} else {
 				details.classList.add('bg-white');
 			}
@@ -126,10 +131,20 @@ async function loadFAQs() {
 	}
 }
 
-searchInput.addEventListener('input', () => {
+function debounce(fn, delay) {
+	let timeout;
+	return (...args) => {
+		clearTimeout(timeout);
+		timeout = setTimeout(() => fn(...args), delay);
+	};
+}
+
+const debouncedSearch = debounce(() => {
 	renderFAQs(faqs);
 	clearSearchBtn.classList.toggle('hidden', searchInput.value === '');
-});
+}, 200);
+
+searchInput.addEventListener('input', debouncedSearch);
 
 clearSearchBtn.addEventListener('click', () => {
 	searchInput.value = '';
@@ -144,3 +159,123 @@ langSelect.addEventListener('change', () => {
 
 loadFAQs();
 updateTitle();
+
+document.addEventListener('DOMContentLoaded', () => {
+	// --- Pagination dots footer ---
+	const container = document.getElementById('scroll-container');
+
+	if (container) {
+		let dotsContainer = document.createElement('div');
+		dotsContainer.id = 'pagination-dots';
+		dotsContainer.style.textAlign = 'center';
+		dotsContainer.style.marginTop = '10px';
+		container.parentNode.insertBefore(dotsContainer, container.nextSibling);
+
+		function createDots() {
+			dotsContainer.innerHTML = '';
+
+			const visibleWidth = container.clientWidth;
+			const totalScrollWidth = container.scrollWidth;
+
+			const pages = Math.ceil(totalScrollWidth / visibleWidth);
+
+			for (let i = 0; i < pages; i++) {
+				const dot = document.createElement('div');
+				dot.classList.add('dot');
+				if (i === 0) dot.classList.add('active');
+				dot.style.width = '10px';
+				dot.style.height = '10px';
+				dot.style.borderRadius = '50%';
+				dot.style.backgroundColor = '#cbd5e1'; // gris clair
+				dot.style.margin = '0 5px';
+				dot.style.display = 'inline-block';
+				dot.style.cursor = 'pointer';
+				dot.style.transition = 'background-color 0.3s, width 0.3s, height 0.3s';
+
+				dot.addEventListener('click', () => {
+					container.scrollTo({
+						left: i * visibleWidth,
+						behavior: 'smooth'
+					});
+					setActiveDot(i);
+				});
+
+				dotsContainer.appendChild(dot);
+			}
+		}
+
+		function setActiveDot(index) {
+			const dots = Array.from(dotsContainer.children);
+			dots.forEach((dot, i) => {
+				const isActive = i === index;
+				dot.classList.toggle('active', isActive);
+				dot.style.backgroundColor = isActive ? '#3b82f6' : '#cbd5e1';
+				dot.style.width = isActive ? '12px' : '10px';
+				dot.style.height = isActive ? '12px' : '10px';
+			});
+		}
+
+		function updateActiveDotOnScroll() {
+			const scrollLeft = container.scrollLeft;
+			const visibleWidth = container.clientWidth;
+			const maxScrollLeft = container.scrollWidth - visibleWidth;
+			const tolerance = 4;
+
+			let currentPage;
+
+			if (scrollLeft >= maxScrollLeft - tolerance) {
+				// On est tout à droite, active le dernier dot
+				currentPage = dotsContainer.children.length - 1;
+			} else {
+				// Sinon on prend la page à gauche la plus proche (floor)
+				currentPage = Math.floor(scrollLeft / visibleWidth);
+			}
+
+			setActiveDot(currentPage);
+		}
+
+		createDots();
+		updateActiveDotOnScroll();
+
+		window.addEventListener('resize', () => {
+			createDots();
+			updateActiveDotOnScroll();
+		});
+
+		container.addEventListener('scroll', updateActiveDotOnScroll);
+
+		if ('ResizeObserver' in window) {
+			const observer = new ResizeObserver(() => {
+				createDots();
+				updateActiveDotOnScroll();
+			});
+			observer.observe(container);
+		}
+	}
+
+	// --- Flèches verticales FAQ ---
+	const scrollUp = document.getElementById('scroll-up');
+	const scrollDown = document.getElementById('scroll-down');
+	const mainScroll = document.querySelector('main');
+
+	if (scrollUp && scrollDown && mainScroll) {
+		function updateVerticalArrows() {
+			const scrollTop = mainScroll.scrollTop;
+			const scrollMax = mainScroll.scrollHeight - mainScroll.clientHeight;
+
+			scrollUp.style.display = scrollTop > 0 ? 'block' : 'none';
+			scrollDown.style.display = scrollTop < scrollMax - 1 ? 'block' : 'none';
+		}
+
+		scrollUp.addEventListener('click', () => {
+			mainScroll.scrollBy({ top: -100, behavior: 'smooth' });
+		});
+
+		scrollDown.addEventListener('click', () => {
+			mainScroll.scrollBy({ top: 100, behavior: 'smooth' });
+		});
+
+		mainScroll.addEventListener('scroll', updateVerticalArrows);
+		updateVerticalArrows();
+	}
+});
